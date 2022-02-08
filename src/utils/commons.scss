@@ -1,0 +1,26 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+//breakpoints
+$screen-xl: 1700px;
+$screen-lg: 1300px;
+$screen-md: 1000px;
+$screen-sm: 800px;
+$screen-xs: 400px;
+
+.flexRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.flexCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}

@@ -1,0 +1,62 @@
+@import "./utils//commons.scss";
+
+@font-face {
+  font-family: KTT;
+  src: url("./assets/fonts/kyivType/KyivTypeTitling-Heavy3.otf");
+}
+
+@font-face {
+  font-family: Gill-Sans;
+  src: url("./assets/fonts/gillSans/Gill\ Sans.otf");
+}
+
+html {
+  font-size: 16px;
+  @media screen and (max-width: $screen-lg) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: $screen-md) {
+    font-size: 10px;
+  }
+  @media screen and (max-width: 900px) {
+    font-size: 8px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 7px;
+  }
+  @media screen and (max-width: 330px) {
+    font-size: 6px;
+  }
+}
+
+.container {
+  font-family: Gill-Sans;
+  color: white;
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: KTT;
+}
+
+h1 {
+  font-size: 7.5rem;
+  @media screen and (max-width: 700px) {
+    font-size: 6rem;
+  }
+}
+h2 {
+  font-size: 2.2rem;
+}
+
+p {
+  font-size: 2.25rem;
+  @media screen and (max-width: 700px) {
+    font-size: 3rem;
+  }
+}
