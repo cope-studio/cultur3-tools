@@ -310,7 +310,7 @@ const Home = () => {
             </p>{" "}
             <p>
               Cultur3 helps build both with precise data tools and thesis
-              building teams
+              building teams.
             </p>
           </div>
           <div className={styles.imageContainer}>
@@ -336,8 +336,9 @@ const Home = () => {
               Bombs
             </h1>
             <p className={styles.firstPara}>
-              We build multi chapter stories with founders Our story starts with
-              building great narratives alongside founders that people love.
+              We build multi chapter stories with founders. Our story starts
+              with building great narratives alongside founders that people
+              love.
             </p>
           </div>
           <div className={styles.imageContainer}>
@@ -395,8 +396,9 @@ const Home = () => {
             ></ScrollTrigger>{" "}
             <h1>Culture Cult Communities</h1>
             <p>
-              We build multi chapter stories with founders Our story starts with
-              building great narratives alongside founders that people love.
+              We build multi chapter stories with founders. Our story starts
+              with building great narratives alongside founders that people
+              love.
             </p>
           </div>
         </section>
@@ -524,7 +526,7 @@ const Home = () => {
           <div className={styles.paraAndImage}>
             <div className={styles.left}>
               <p>You, of course!</p>
-              <p>Just let us know how, right here:</p>
+              <p>Just let us know how, right here</p>
               <form onSubmit={handleJustEmailSubmit} className={styles.input}>
                 <input
                   required
