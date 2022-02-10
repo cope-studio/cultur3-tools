@@ -1,6 +1,7 @@
 @import "../../utils/commons.scss";
 
 .container {
+  overflow-x: hidden;
   .gradientText {
     background: radial-gradient(
       154.61% 714.48% at 8.37% 21.66%,
@@ -37,22 +38,48 @@
   }
   .gradientButton {
     color: white;
+    position: relative;
     @extend .flexRow;
     justify-content: center;
     min-width: 200px;
     font-size: 1.6rem;
     font-weight: 500;
     cursor: pointer;
-    background: linear-gradient(110deg, #ac86fe, #fe869c, #4b8aff);
+    background: linear-gradient(110deg, #ea4c89, #4b8aff);
     border: 3px solid #1f1f1f;
+    overflow: hidden;
     border-radius: 1rem;
     padding: 15px 20px;
     height: 60px;
+    span,
+    img {
+      position: relative;
+      z-index: 3;
+    }
     img {
       margin-right: 0.8rem;
     }
+    transition: all 0.5s;
     @media screen and (max-width: 900px) {
       font-size: 2rem;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: -100%;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(110deg, #4b8aff, #ea4c89);
+      border-radius: 0.9rem;
+      transition: left 0.5s;
+    }
+    &:hover {
+      box-shadow: 0px 0px 20px white;
+    }
+    &:focus {
+      &::after {
+        left: 0;
+      }
     }
   }
   .hero {
@@ -67,10 +94,17 @@
     header {
       @extend .flexRow;
       // position: fixed;
+      padding-top: 10px;
       width: 100%;
-      button {
+      a {
+        text-decoration: none;
         margin-left: auto;
         margin-right: 3rem;
+        @media screen and (max-width: 800px) {
+          margin-right: 0;
+        }
+      }
+      button {
         @media screen and (max-width: 800px) {
           min-width: fit-content;
           padding: 10px 15px;
@@ -122,7 +156,7 @@
       overflow: hidden;
       margin: 0;
       border-radius: 50%;
-      background: linear-gradient(180deg, #1164ff 0%, #ac86fe 100%);
+      // background: linear-gradient(180deg, #1164ff 0%, #ac86fe 100%);
       filter: blur(700px);
       opacity: 0.4;
     }
@@ -177,7 +211,7 @@
       }
     }
     .colorfulFlower {
-      top: 15vh;
+      top: 13vh;
       position: absolute;
       right: 2rem;
       @media screen and (max-width: 1100px) {
@@ -202,6 +236,119 @@
         }
       }
     }
+    .modalContainer {
+      position: fixed;
+      @extend .flexRow;
+      justify-content: center;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+    }
+    .modal {
+      position: absolute;
+      overflow: auto;
+      box-shadow: 0px 0px 20px white;
+      padding: 2rem;
+      padding-top: 60px;
+      @extend .flexCol;
+      align-items: flex-start;
+      z-index: 4;
+      min-width: 60vw;
+      background-color: #252525;
+      max-height: 90vh;
+      button {
+        cursor: pointer;
+      }
+      h3 {
+        font-size: 4rem;
+      }
+      p {
+        align-self: flex-start;
+        font-size: 1.7rem;
+        text-align: left;
+      }
+      .header {
+        width: 100%;
+        @extend .flexRow;
+        button {
+          @extend .flexRow;
+          align-items: center;
+          margin-left: auto;
+          border-radius: 50%;
+          border: none;
+          padding: 7px 8px;
+          background: none;
+          &:hover {
+            background-color: rgb(63, 63, 63);
+          }
+        }
+      }
+      .inputs {
+        @extend .flexCol;
+        margin-top: 2rem;
+        width: 100%;
+        .input,
+        .textArea {
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+          width: 100%;
+          outline: none;
+          color: white;
+          padding: 1rem;
+          background-color: #2b2b2b;
+          font-size: 1.5rem;
+          border: none;
+          margin: 10px;
+          resize: none;
+        }
+      }
+      .submit {
+        align-self: flex-end;
+        padding: 10px 20px;
+        background: linear-gradient(110deg, #ea4c89, #4b8aff);
+        border: none;
+        border-radius: 5px;
+        color: white;
+      }
+      @media screen and (max-width: 1300px) {
+        .header {
+          margin-top: 60px;
+        }
+      }
+      @media screen and (max-width: 1000px) {
+        .header {
+          margin-top: 20px;
+        }
+      }
+      @media screen and (max-width: 900px) {
+        h3 {
+          font-size: 5rem;
+        }
+        p {
+          font-size: 2.3rem;
+        }
+        input,
+        textarea {
+          padding: 10px 5px !important;
+          font-size: 2rem !important;
+        }
+      }
+      @media screen and (max-width: 400px) {
+        padding-top: 100px !important;
+        p {
+          margin-top: 3rem;
+          font-size: 3rem;
+        }
+        input,
+        textarea {
+          padding: 15px 10px !important;
+          font-size: 2.4rem !important;
+        }
+      }
+    }
   }
   .gridContainer1,
   .gridContainer2,
@@ -216,13 +363,16 @@
     @extend .flexRow;
     .imageContainer {
       position: absolute;
+      z-index: 0;
       right: 0;
       img {
         width: 400px;
       }
     }
     .text {
-      width: 87%;
+      position: relative;
+      z-index: 1;
+      width: 79%;
       .firstPara {
         margin-top: 3rem;
       }
@@ -313,7 +463,7 @@
 
     > .imageContainer {
       position: absolute;
-      bottom: 0;
+      bottom: -30px;
       left: 0;
       img {
         width: 200px;
@@ -321,17 +471,28 @@
     }
 
     @media screen and (max-width: 1050px) {
+      padding: 150px;
       .companiesList {
         grid-template-columns: repeat(3, 1fr);
       }
+      .imageContainer {
+        bottom: 0px;
+        img {
+          width: 150px;
+        }
+      }
     }
     @media screen and (max-width: $screen-sm) {
+      text-align: center;
       .companiesList {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    @media screen and (max-width: 700px) {
-      display: none;
+    @media screen and (max-width: 500px) {
+      padding-bottom: 10px;
+      .imageContainer {
+        position: relative;
+      }
     }
   }
   .gridContainer2 {
@@ -392,7 +553,9 @@
     @extend .flexCol;
     position: relative;
     h1 {
-      text-shadow: 0px 0px 16px #ffffff;
+      span {
+        text-shadow: 0px 0px 16px #ffffff;
+      }
     }
     .starImages {
       position: absolute;
@@ -438,11 +601,26 @@
       @extend .flexRow;
       flex-wrap: wrap;
       justify-content: center;
+
       .imageContainer {
-        margin: 2rem 4rem;
+        margin: 0.3rem 3rem;
+        padding: 2rem;
+        transition: all 1s ease-in-out;
+        // box-shadow: 0px 0px 32px black;
         @extend .flexCol;
+        img {
+          width: 180px;
+          transition: all 1s ease-in-out;
+        }
         p {
           margin-top: 2rem;
+        }
+        &:hover {
+          border-radius: 3rem;
+          box-shadow: 0px 0px 32px white;
+          img {
+            transform: rotate(360deg);
+          }
         }
       }
     }
@@ -451,7 +629,7 @@
       .imagesContainer {
         .imageContainer {
           img {
-            width: 200px;
+            width: 150px;
           }
         }
       }
@@ -775,7 +953,8 @@
   footer {
     padding: 5rem;
     padding-bottom: 0rem;
-    background-image: linear-gradient(to bottom, #000104, #01318a);
+    // background-image: linear-gradient(to bottom, #000104, #01318a);
+    background-color: #000000;
     overflow: hidden;
     .contentForSmallScreen {
       display: none;
@@ -799,6 +978,7 @@
     }
     .left {
       .chat {
+        cursor: pointer;
         margin-top: 3rem;
         @extend .flexRow;
         align-items: center;
@@ -839,10 +1019,13 @@
         cursor: pointer;
         color: white;
         border-radius: 1.5rem;
-        background-color: transparent;
+        background: transparent;
         padding: 1rem 2rem;
         border: 2px solid white;
         margin: 1rem;
+        &:hover {
+          background: linear-gradient(110deg, #4b8aff, #ea4c89);
+        }
       }
     }
     @media screen and (max-width: 1100px) {
@@ -876,11 +1059,15 @@
           display: flex;
           justify-content: space-evenly;
           margin-top: 10px;
-          .icon {
-            cursor: pointer;
+          a {
             display: flex;
-            padding: 10px;
             justify-content: center;
+          }
+          .icon {
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+            padding: 10px;
             border-radius: 5px;
             border: 1px solid white;
             margin: 10px;

@@ -2,8 +2,31 @@
 
 .container {
   width: fit-content;
-  margin: 1rem 1rem 1rem 0rem;
+  margin: 1rem 2rem 1rem 2rem;
+  @extend .flexRow;
   @media screen and (max-width: $screen-sm) {
-    margin: 1rem 3rem 3rem 0rem;
+    margin: 1rem 3rem 3rem 3rem;
+  }
+  @media screen and (max-width: 700px) {
+    img {
+      width: 200px;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    margin: 1rem 2rem 2rem 2rem;
+    img {
+      width: 150px;
+    }
+  }
+  @media screen and (max-width: 370px) {
+    margin: 1rem 1rem 2rem 1rem;
+    img {
+      width: 130px;
+    }
+  }
+  border-radius: 20px;
+  &:hover {
+    box-shadow: 0px 0px 23px white;
+    transform: scale(1.03);
   }
 }

@@ -1,11 +1,23 @@
 import styles from "./Home.module.scss";
 import { imageImports, iconImports } from "../../assets/";
-import { useContext } from "react";
+import {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { CompanyCard } from "../../components";
 import { GlobalContext } from "../../utils/context/GlobalContext.jsx";
+import { motion } from "framer-motion";
+import clsx from "clsx";
+import ScrollTrigger from "react-scroll-trigger";
+import TypeWriter from "typewriter-effect";
+
+import "./Home.css";
 
 const Home = () => {
-  const { innerWidth } = GlobalContext;
+  const { innerWidth, cursorPosition } = useContext(GlobalContext);
   const {
     greenFlower,
     colorfulFlower,
@@ -64,15 +76,131 @@ const Home = () => {
     { id: 9, image: bbRecords },
     { id: 10, image: hunter },
     { id: 11, image: firstAccess },
-    { id: 12, image: threeCircle },
-    { id: 13, image: truckFestival },
-    { id: 14, image: threeBentArrows },
+    // { id: 12, image: threeCircle },
+    // { id: 13, image: truckFestival },
+    // { id: 14, image: threeBentArrows },
   ];
-  const { telegram, forwardArrow, twitter, instagram, discord } = iconImports;
+  const { telegram, forwardArrow, twitter, instagram, discord, remove } =
+    iconImports;
+  const greenFlowerHero = useRef(null);
+  const colorfulFlowerHero = useRef(null);
+  const [isModalRequested, setIsModalRequested] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [iconLaunchInView, setIconLaunchInView] = useState(false);
+  const [hypeBombInView, setHypeBombInView] = useState(false);
+  const [workWithInView, setWorkWithInView] = useState(false);
+  const [cultureCultInView, setCultureCultInView] = useState(false);
 
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  let requestOptionsForContactUsForm = {
+    method: "post",
+    headers: myHeaders,
+    redirect: "follow",
+    body: JSON.stringify([[name, email, message]]),
+  };
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    fetch(
+      "https://v1.nocodeapi.com/shishir/google_sheets/zfDNCFZpdvMRqVpj?tabId=Contact Us",
+      requestOptionsForContactUsForm
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+    setName("");
+    setEmail("");
+    setMessage("");
+  }
+  const companyContainer = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: workWithInView ? 1 : 0,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const companyItem = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: workWithInView ? 0 : 20,
+      opacity: workWithInView ? 1 : 0,
+    },
+  };
   return (
     <div className={styles.container}>
       <section className={styles.hero}>
+        {isModalRequested && (
+          <div
+            onClick={() => setIsModalRequested(false)}
+            className={styles.modalContainer}
+          >
+            <form
+              onSubmit={handleSubmit}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsModalRequested(true);
+              }}
+              className={styles.modal}
+            >
+              <div className={styles.header}>
+                <h3>Hey There!</h3>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsModalRequested(false);
+                  }}
+                >
+                  <img src={remove} alt="Close" />
+                </button>
+              </div>
+
+              <p>
+                Please fill in the details below so that we can get in contact
+                with you.
+              </p>
+              <div className={styles.inputs}>
+                <input
+                  className={styles.input}
+                  type="text"
+                  value={name}
+                  required
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your Name"
+                />
+                <input
+                  className={styles.input}
+                  type="email"
+                  value={email}
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your Email"
+                />
+                <textarea
+                  className={styles.textArea}
+                  name="message"
+                  id=""
+                  value={message}
+                  required
+                  onChange={(e) => setMessage(e.target.value)}
+                  cols="30"
+                  rows="10"
+                  placeholder="Enter Your Message"
+                ></textarea>
+              </div>
+              <button type="submit" className={styles.submit}>
+                Submit
+              </button>
+            </form>
+          </div>
+        )}
         <div className={styles.content}>
           <header>
             <div className={styles.imageContainer}>
@@ -82,10 +210,18 @@ const Home = () => {
                 <h2>Tools</h2>
               </div>
             </div>
-            <button className={styles.gradientButton}>
-              <img src={telegram} alt="Telegram" />
-              {innerWidth > 800 && "join our Telegram"}
-            </button>
+            <a href="https://t.me/+VECH0ef_S0NhOGY8">
+              {innerWidth > 800 ? (
+                <button className={styles.gradientButton}>
+                  <img src={telegram} alt="Telegram" />
+                  <span>Join our Telegram</span>
+                </button>
+              ) : (
+                <button className={styles.gradientButton}>
+                  <img src={telegram} alt="Telegram" />
+                </button>
+              )}
+            </a>
           </header>
           <div className={styles.headingContainer}>
             <h1 className={styles.heroHeading}>In Web3,</h1>
@@ -94,21 +230,37 @@ const Home = () => {
               Virtue
             </h1>
           </div>
-
           <p>Let’s launch faster & bigger?</p>
 
           <div className={styles.bottomImagesContainer}>
-            <div className={styles.greenFlower}>
+            <motion.div
+              transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
+              initial={{ y: -300, x: 1000 }}
+              animate={{ y: 0, x: 0 }}
+              ref={greenFlowerHero}
+              className={styles.greenFlower}
+            >
               <img src={greenFlower} alt="Green Flower" />
-            </div>
-            <button className={styles.gradientButton}>
-              Say Hello &#128075;
+            </motion.div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsModalRequested(true);
+              }}
+              className={styles.gradientButton}
+            >
+              <span>Say Hello &#128075;</span>
             </button>
-            <div className={styles.galaxy}>
+            <motion.div
+              transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
+              initial={{ y: 300, x: -1000 }}
+              animate={{ y: 0, x: 0 }}
+              className={styles.galaxy}
+            >
               <img src={galaxy} alt="Galaxy" />
-            </div>
+            </motion.div>
           </div>
-          <div className={styles.colorfulFlower}>
+          <div ref={colorfulFlowerHero} className={styles.colorfulFlower}>
             <img src={colorfulFlower} alt="Colorful Flower" />
           </div>
         </div>
@@ -116,15 +268,27 @@ const Home = () => {
         <div className={styles.centerGradient}></div>
       </section>
       <section className={styles.gridContainer1}>
-        <section className={styles.iconicLaunch}>
+        <motion.section
+          transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
+          initial={{ x: -1000 }}
+          animate={{ x: iconLaunchInView ? 0 : -1000 }}
+          className={styles.iconicLaunch}
+        >
           <div className={styles.text}>
             <h1>
               Every Great Story Begins with an
-              <span className={styles.gradientText}> Iconic</span> Launch
+              <ScrollTrigger
+                onEnter={() => {
+                  setIconLaunchInView(true);
+                }}
+              >
+                <span className={styles.gradientText}> Iconic</span>
+              </ScrollTrigger>{" "}
+              Launch
             </h1>
             <p className={styles.firstPara}>
               The best web3 companies will win on culture and community.
-            </p>
+            </p>{" "}
             <p>
               Cultur3 helps build both with precise data tools and thesis
               building teams
@@ -133,11 +297,24 @@ const Home = () => {
           <div className={styles.imageContainer}>
             <img src={rings} alt="Rings" />
           </div>
-        </section>
-        <section className={styles.hypeBombs}>
+        </motion.section>
+
+        <motion.section
+          transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
+          initial={{ x: 1000 }}
+          animate={{ x: hypeBombInView ? 0 : 1000 }}
+          className={styles.hypeBombs}
+        >
           <div className={styles.text}>
             <h1>
-              <span className={styles.gradientText}> Hype</span> Bombs
+              <ScrollTrigger
+                onEnter={() => {
+                  setHypeBombInView(true);
+                }}
+              >
+                <span className={styles.gradientText}> Hype</span>
+              </ScrollTrigger>{" "}
+              Bombs
             </h1>
             <p className={styles.firstPara}>
               We build multi chapter stories with founders Our story starts with
@@ -147,18 +324,37 @@ const Home = () => {
           <div className={styles.imageContainer}>
             <img src={lightOrangeCocentricSquare} alt="Hype Bombs" />
           </div>
-        </section>
+        </motion.section>
       </section>
       <section className={styles.companies}>
         <div className={styles.gradientLine1}></div>
+
         <h1>
-          Who we <span className={styles.gradientText}> work</span> with
+          Who we <span className={styles.gradientText}> work </span>
+          with
         </h1>
-        <div className={styles.companiesList}>
+        <motion.div
+          variants={companyContainer}
+          initial="hidden"
+          animate="visible"
+          className={clsx(styles.companiesList, "container")}
+        >
           {companyList.map((item) => (
-            <CompanyCard image={item.image} key={item.id} id={item.id} />
+            <ScrollTrigger
+              onEnter={() => {
+                setWorkWithInView(true);
+              }}
+            >
+              <CompanyCard
+                variants={companyItem}
+                image={item.image}
+                key={item.id}
+                id={item.id}
+                className="item"
+              />
+            </ScrollTrigger>
           ))}
-        </div>
+        </motion.div>
         <div className={styles.gradientLine2}></div>
         <div className={styles.imageContainer}>
           <img src={blueFlower} alt="Blue Flower" />
@@ -166,10 +362,18 @@ const Home = () => {
       </section>
       <section className={styles.gridContainer2}>
         <section className={styles.cultureCult}>
-          <div className={styles.imageContainer}>
+          <motion.div
+            animate={{ x: cultureCultInView ? 0 : 1900 }}
+            initial={{ x: 1900 }}
+            transition={{ duration: "0.4", ease: [0.6, 0.01, -0.05, 0.9] }}
+            className={styles.imageContainer}
+          >
             <img src={ticket} alt="Ticket" />
-          </div>
+          </motion.div>
           <div className={styles.textContainer}>
+            <ScrollTrigger
+              onEnter={() => setCultureCultInView(true)}
+            ></ScrollTrigger>{" "}
             <h1>Culture Cult Communities</h1>
             <p>
               We build multi chapter stories with founders Our story starts with
@@ -178,7 +382,9 @@ const Home = () => {
           </div>
         </section>
         <section className={styles.lightUp}>
-          <h1>What we light up</h1>
+          <h1>
+            What we <span>light </span>up
+          </h1>
           <div className={styles.imagesContainer}>
             <div className={styles.imageContainer}>
               <img src={blueHexagonalBadge} alt="Blue Hexagonal Badge" />
@@ -194,11 +400,11 @@ const Home = () => {
             </div>
             <div className={styles.imageContainer}>
               <img src={redOctagonalBadge} alt="Red Octagonal Badge" />
-              <p>Dapp Listings</p>
+              <p>Token Drops</p>
             </div>
             <div className={styles.imageContainer}>
               <img src={greenCircularBadge} alt="Green Circular Badge" />
-              <p>Dapp Listings</p>
+              <p>Metaverse Projects</p>
             </div>
           </div>
           <div className={styles.starImages}>
@@ -319,7 +525,13 @@ const Home = () => {
           <div className={styles.left}>
             <h1>Get in touch</h1>
             <p>The best web3 companies will win on culture and community. </p>
-            <div className={styles.chat}>
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsModalRequested(true);
+              }}
+              className={styles.chat}
+            >
               <span>Let's Chat</span>
               <img src={forwardArrow} alt="Forward Arrow" />
             </div>
@@ -333,9 +545,16 @@ const Home = () => {
         <div className={styles.copyrightButtons}>
           <p className={styles.copyright}>© Cultur3 Tools 2021</p>
           <div className={styles.buttons}>
-            <button>Instagram</button>
-            <button>Telegram</button>
-            <button>Twitter</button>
+            <a href="https://www.instagram.com/cultur3.tools/">
+              <button>Instagram</button>
+            </a>
+            <a href="https://twitter.com/0xcultur3">
+              <button>Twitter</button>
+            </a>
+            <a href="https://t.me/+VECH0ef_S0NhOGY8">
+              {" "}
+              <button>Telegram</button>
+            </a>
           </div>
         </div>
 
@@ -344,18 +563,22 @@ const Home = () => {
           <h1>Cultur3 Tools</h1>
           <p>Follow us on Socials</p>
           <div className={styles.icons}>
-            <div className={styles.icon}>
-              <img src={twitter} alt="Twitter" />
-            </div>
-            <div className={styles.icon}>
-              <img src={instagram} alt="Instagram" />
-            </div>
-            <div className={styles.icon}>
-              <img src={discord} alt="Discord" />
-            </div>
-            <div className={styles.icon}>
-              <img src={telegram} alt="Telgram" />
-            </div>
+            <a href="https://twitter.com/0xcultur3">
+              <div className={styles.icon}>
+                <img src={twitter} alt="Twitter" />
+              </div>
+            </a>
+            <a href="https://www.instagram.com/cultur3.tools/">
+              {" "}
+              <div className={styles.icon}>
+                <img src={instagram} alt="Instagram" />
+              </div>{" "}
+            </a>
+            <a href="https://t.me/+VECH0ef_S0NhOGY8">
+              <div className={styles.icon}>
+                <img src={telegram} alt="Telegram" />
+              </div>
+            </a>
           </div>
           <span>© Cultur3 Tools 2021</span>
         </div>
