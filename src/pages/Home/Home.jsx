@@ -92,6 +92,7 @@ const Home = () => {
   const [hypeBombInView, setHypeBombInView] = useState(false);
   const [workWithInView, setWorkWithInView] = useState(false);
   const [cultureCultInView, setCultureCultInView] = useState(false);
+  const [justEmail, setJustEmail] = useState("");
 
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -101,7 +102,25 @@ const Home = () => {
     redirect: "follow",
     body: JSON.stringify([[name, email, message]]),
   };
-  function handleSubmit(e) {
+  let requestOptionsForJustEmailForm = {
+    method: "post",
+    headers: myHeaders,
+    redirect: "follow",
+    body: JSON.stringify([[justEmail]]),
+  };
+  function handleJustEmailSubmit(e) {
+    e.preventDefault();
+
+    fetch(
+      "https://v1.nocodeapi.com/shishir/google_sheets/zfDNCFZpdvMRqVpj?tabId=Just Email Form",
+      requestOptionsForJustEmailForm
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+    setJustEmail("");
+  }
+  function handleContactUsSubmit(e) {
     e.preventDefault();
 
     fetch(
@@ -143,7 +162,7 @@ const Home = () => {
             className={styles.modalContainer}
           >
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleContactUsSubmit}
               onClick={(e) => {
                 e.stopPropagation();
                 setIsModalRequested(true);
@@ -506,10 +525,18 @@ const Home = () => {
             <div className={styles.left}>
               <p>You, of course!</p>
               <p>Just let us know how, right here:</p>
-              <div className={styles.input}>
-                <input type="email" placeholder="Your Email Here" />
-                <img src={forwardArrow} alt="Forward Arrow" />
-              </div>
+              <form onSubmit={handleJustEmailSubmit} className={styles.input}>
+                <input
+                  required
+                  type="email"
+                  value={justEmail}
+                  onChange={(e) => setJustEmail(e.target.value)}
+                  placeholder="Your Email Here"
+                />
+                <button type="submit">
+                  <img src={forwardArrow} alt="Forward Arrow" />
+                </button>
+              </form>
             </div>
             <div className={styles.right}>
               <img src={lightOrangeSquare} alt="Light Orange Square" />

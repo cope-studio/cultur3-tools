@@ -873,9 +873,19 @@
           font-size: 2rem;
           background-color: transparent;
         }
-        img {
-          cursor: pointer;
+        button {
+          @extend .flexRow;
+          justify-content: center;
+          border: none;
+          background-color: transparent;
+          border-radius: 50%;
+          padding: 5px;
           margin-left: -2rem;
+          width: fit-content;
+        }
+        img {
+          width: 20px;
+          cursor: pointer;
         }
       }
       @media screen and (max-width: 1100px) {
@@ -918,7 +928,7 @@
               input {
                 width: 70%;
               }
-              img {
+              button {
                 margin-left: -5rem;
                 margin-bottom: 1rem;
               }
