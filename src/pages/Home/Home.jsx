@@ -155,7 +155,7 @@ const Home = () => {
   };
   return (
     <div className={styles.container}>
-      <section className={styles.hero}>
+      <section className={clsx(styles.gridContainer4, styles.hero)}>
         {isModalRequested && (
           <div
             onClick={() => setIsModalRequested(false)}
@@ -231,9 +231,8 @@ const Home = () => {
             </div>
             <a href="https://t.me/+VECH0ef_S0NhOGY8">
               {innerWidth > 800 ? (
-                <button className={styles.gradientButton}>
+                <button className={styles.coloredButton}>
                   <img src={telegram} alt="Telegram" />
-                  <span>Join our Telegram</span>
                 </button>
               ) : (
                 <button className={styles.gradientButton}>
@@ -301,7 +300,7 @@ const Home = () => {
                   setIconLaunchInView(true);
                 }}
               >
-                <span className={styles.gradientText}> Iconic</span>
+                <span className={styles.coloredText}> Iconic</span>
               </ScrollTrigger>{" "}
               Launch
             </h1>
@@ -331,7 +330,7 @@ const Home = () => {
                   setHypeBombInView(true);
                 }}
               >
-                <span className={styles.gradientText}> Hype</span>
+                <span className={styles.coloredText}> Hype</span>
               </ScrollTrigger>{" "}
               Bombs
             </h1>
@@ -396,9 +395,9 @@ const Home = () => {
             ></ScrollTrigger>{" "}
             <h1>Culture Cult Communities</h1>
             <p>
-              We build multi chapter stories with founders. Our story starts
-              with building great narratives alongside founders that people
-              love.
+              Every iconic company is built around a movement of ideas. We want
+              to identify radical thinkers and help them build breakthrough
+              companies.
             </p>
           </div>
         </section>
@@ -520,9 +519,7 @@ const Home = () => {
           </div>
         </section>
         <section className={styles.whoToTag}>
-          <h1>
-            Who do we <span className={styles.gradientText}>tag with?</span>
-          </h1>
+          <h1>Who do we tag with?</h1>
           <div className={styles.paraAndImage}>
             <div className={styles.left}>
               <p>You, of course!</p>

@@ -2,6 +2,21 @@
 
 .container {
   overflow-x: hidden;
+  .coloredText {
+    color: #8d03f9;
+  }
+
+  .coloredButton {
+    cursor: pointer;
+    background-color: #ff4862;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0px 0px 20px white;
+    }
+  }
   .gradientText {
     background: radial-gradient(
       154.61% 714.48% at 8.37% 21.66%,
@@ -85,7 +100,7 @@
   .hero {
     padding: 0rem 5rem;
     text-align: center;
-    background-color: #000000;
+    background-color: #252525;
     position: relative;
     .content {
       position: relative;
@@ -349,13 +364,27 @@
         }
       }
     }
+    @media screen and (max-width: 800px) {
+      background: black;
+      .centerGradient {
+        background: linear-gradient(180deg, #1164ff 0%, #ac86fe 100%);
+      }
+    }
   }
   .gridContainer1,
   .gridContainer2,
-  .gridContainer3 {
+  .gridContainer3,
+  .gridContainer4 {
     background-image: url("../../assets/images/grid.png");
     background-color: #212121;
-    background-size: contain;
+    @media screen and (max-width: 800px) {
+      background-size: contain;
+    }
+  }
+  .gridContainer4 {
+    @media screen and (max-width: 800px) {
+      background-image: none;
+    }
   }
   .iconicLaunch {
     padding: 10rem 5rem;
@@ -454,7 +483,7 @@
     align-items: center;
     background-image: url("../../assets/images/noise.png");
     background-color: #252525;
-
+    background-size: contain;
     .companiesList {
       display: grid;
       margin-top: 4rem;
@@ -483,6 +512,7 @@
       }
     }
     @media screen and (max-width: $screen-sm) {
+      padding: 10rem 2rem;
       text-align: center;
       .companiesList {
         grid-template-columns: repeat(2, 1fr);
@@ -641,7 +671,7 @@
         margin: 0rem -5rem;
         margin-top: 8rem;
         .imageContainer {
-          margin: 0 20px;
+          margin: 0 5px;
           margin-bottom: 4rem;
           img {
             width: 100px;
@@ -654,7 +684,8 @@
     padding: 5rem 0rem;
     padding-top: 8rem;
     background-image: url("../../assets/images/noise.png");
-    background-color: #252525;
+    background-color: #ac86fe;
+    background-size: contain;
     @extend .flexCol;
     .cards {
       width: 100%;
@@ -675,7 +706,7 @@
         }
         li {
           font-size: 2rem;
-          color: #bababa;
+          color: #e2e2e2;
         }
         ul {
           margin-top: 2rem;
@@ -694,10 +725,10 @@
           font-size: 2.5rem;
         }
         &:hover {
-          background-color: #ce9e29;
+          background-color: #ac86fe;
           li {
-            color: #2f2f2f;
-            opacity: 0.7;
+            color: white;
+            opacity: 1;
           }
           .imageContainer {
             margin-bottom: -2rem;
@@ -1014,7 +1045,7 @@
     .bottomLargeHeading {
       margin-bottom: -3.6rem;
       font-size: 9rem;
-      opacity: 0.2;
+      color: #1aadff;
     }
 
     @extend .flexCol;
