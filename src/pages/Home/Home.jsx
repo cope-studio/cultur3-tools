@@ -589,8 +589,8 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.right}>
-            <h1>Contact</h1>
-            <p>hello@culture.tools</p>
+            {/* <h1>Contact</h1>
+            <p>hello@culture.tools</p> */}
             <h1 className={styles.join}>Join our circle</h1>
           </div>
         </div>
