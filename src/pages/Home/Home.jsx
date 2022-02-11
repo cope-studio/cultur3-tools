@@ -440,7 +440,7 @@ const Home = () => {
             </div>
             <div className={styles.imageContainer}>
               <img src={redOctagonalBadge} alt="Red Octagonal Badge" />
-              <p>
+              <p style={{ textAlign: "center" }}>
                 Token
                 <br /> Drops
               </p>

@@ -1,7 +1,6 @@
 import styles from "./App.module.scss";
 import { useState, useEffect } from "react";
 import { Home } from "./pages";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalContextProvider from "./utils/context/GlobalContext.jsx";
 import { Cursor } from "./components";
 
@@ -21,16 +20,12 @@ const App = () => {
     });
   }, []);
   return (
-    <Router basename="/culture-tools">
-      <GlobalContextProvider>
-        <div className={styles.container}>
-          <Cursor className={cursorClass} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </div>
-      </GlobalContextProvider>
-    </Router>
+    <GlobalContextProvider>
+      <div className={styles.container}>
+        <Cursor className={cursorClass} />
+        <Home />
+      </div>
+    </GlobalContextProvider>
   );
 };
 

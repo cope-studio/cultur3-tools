@@ -1,6 +1,6 @@
 {
-  "name": "culture-tools-copy",
-  "homepage": "https://shishirtiwari23.github.io/culture-tools/",
+  "name": "culture-tools",
+  "homepage": "",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-scroll-trigger": "^0.6.13",
+    "sass": "^1.49.7",
     "typewriter-effect": "^2.18.2",
     "web-vitals": "^2.1.4"
   },
@@ -23,9 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
