@@ -21,7 +21,7 @@ const App = () => {
     });
   }, []);
   return (
-    <Router basename="/culture-tools">
+    <Router basename="/cultur3-tools">
       <GlobalContextProvider>
         <div className={styles.container}>
           <Cursor className={cursorClass} />

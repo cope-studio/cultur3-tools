@@ -18,6 +18,7 @@ import "./Home.css";
 
 const Home = () => {
   const { innerWidth, cursorPosition } = useContext(GlobalContext);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const {
     greenFlower,
     colorfulFlower,
@@ -80,6 +81,10 @@ const Home = () => {
     // { id: 13, image: truckFestival },
     // { id: 14, image: threeBentArrows },
   ];
+  function handleConfirmation() {
+    setIsFormSubmitted(true);
+    setTimeout(() => setIsFormSubmitted(false), 3000);
+  }
   const {
     telegram,
     forwardArrow,
@@ -117,7 +122,7 @@ const Home = () => {
   };
   function handleJustEmailSubmit(e) {
     e.preventDefault();
-
+    handleConfirmation();
     fetch(
       "https://v1.nocodeapi.com/shishir/google_sheets/zfDNCFZpdvMRqVpj?tabId=Just Email Form",
       requestOptionsForJustEmailForm
@@ -129,7 +134,7 @@ const Home = () => {
   }
   function handleContactUsSubmit(e) {
     e.preventDefault();
-
+    handleConfirmation();
     fetch(
       "https://v1.nocodeapi.com/shishir/google_sheets/zfDNCFZpdvMRqVpj?tabId=Contact Us",
       requestOptionsForContactUsForm
@@ -162,6 +167,14 @@ const Home = () => {
   };
   return (
     <div className={styles.container}>
+      <section
+        style={isFormSubmitted ? { display: "flex" } : { display: "none" }}
+        className={styles.confirmation}
+      >
+        <div>
+          <h3>Thanks For Filling out the Form</h3>
+        </div>
+      </section>
       <section className={clsx(styles.gridContainer4, styles.hero)}>
         {isModalRequested && (
           <div
