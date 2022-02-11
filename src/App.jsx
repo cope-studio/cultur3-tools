@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Home } from "./pages";
 import GlobalContextProvider from "./utils/context/GlobalContext.jsx";
 import { Cursor } from "./components";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [cursorClass, setCursorClass] = useState("");
@@ -21,16 +20,12 @@ const App = () => {
     });
   }, []);
   return (
-    <Router basename="/cultur3-tools">
-      <GlobalContextProvider>
-        <div className={styles.container}>
-          <Cursor className={cursorClass} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </div>
-      </GlobalContextProvider>
-    </Router>
+    <GlobalContextProvider>
+      <div className={styles.container}>
+        <Cursor className={cursorClass} />
+        <Home />
+      </div>
+    </GlobalContextProvider>
   );
 };
 
