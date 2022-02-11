@@ -80,8 +80,15 @@ const Home = () => {
     // { id: 13, image: truckFestival },
     // { id: 14, image: threeBentArrows },
   ];
-  const { telegram, forwardArrow, twitter, instagram, discord, remove } =
-    iconImports;
+  const {
+    telegram,
+    forwardArrow,
+    twitter,
+    instagram,
+    discord,
+    arrowRight,
+    remove,
+  } = iconImports;
   const greenFlowerHero = useRef(null);
   const colorfulFlowerHero = useRef(null);
   const [isModalRequested, setIsModalRequested] = useState();
@@ -393,7 +400,11 @@ const Home = () => {
             <ScrollTrigger
               onEnter={() => setCultureCultInView(true)}
             ></ScrollTrigger>{" "}
-            <h1>Culture Cult Communities</h1>
+            <h1>
+              Culture
+              <br /> Cult
+              <br /> Communities
+            </h1>
             <p>
               Every iconic company is built around a movement of ideas. We want
               to identify radical thinkers and help them build breakthrough
@@ -408,23 +419,38 @@ const Home = () => {
           <div className={styles.imagesContainer}>
             <div className={styles.imageContainer}>
               <img src={blueHexagonalBadge} alt="Blue Hexagonal Badge" />
-              <p>NFT Projects</p>
+              <p>
+                NFT <br />
+                Projects
+              </p>
             </div>
             <div className={styles.imageContainer}>
               <img src={purpleHexagonalFlower} alt="Purple Hexagonal Flower" />
-              <p>DAO Launches</p>
+              <p>
+                DAO <br />
+                Launches
+              </p>
             </div>
             <div className={styles.imageContainer}>
               <img src={yellowSquareBadge} alt="Yellow Square Badge" />
-              <p>Dapp Listings</p>
+              <p>
+                Dapp
+                <br /> Listings
+              </p>
             </div>
             <div className={styles.imageContainer}>
               <img src={redOctagonalBadge} alt="Red Octagonal Badge" />
-              <p>Token Drops</p>
+              <p>
+                Token
+                <br /> Drops
+              </p>
             </div>
             <div className={styles.imageContainer}>
               <img src={greenCircularBadge} alt="Green Circular Badge" />
-              <p>Metaverse Projects</p>
+              <p>
+                Metaverse <br />
+                Projects
+              </p>
             </div>
           </div>
           <div className={styles.starImages}>
@@ -559,7 +585,7 @@ const Home = () => {
               className={styles.chat}
             >
               <span>Let's Chat</span>
-              <img src={forwardArrow} alt="Forward Arrow" />
+              <img src={arrowRight} alt="Forward Arrow" />
             </div>
           </div>
           <div className={styles.right}>
@@ -578,7 +604,6 @@ const Home = () => {
               <button>Twitter</button>
             </a>
             <a href="https://t.me/+VECH0ef_S0NhOGY8">
-              {" "}
               <button>Telegram</button>
             </a>
           </div>

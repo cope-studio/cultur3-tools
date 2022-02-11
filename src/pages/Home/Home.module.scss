@@ -109,7 +109,8 @@
     header {
       @extend .flexRow;
       // position: fixed;
-      padding-top: 10px;
+      align-items: flex-start;
+      padding-top: 30px;
       width: 100%;
       a {
         text-decoration: none;
@@ -418,7 +419,7 @@
       }
     }
     @media screen and (max-width: 770px) {
-      flex-direction: column;
+      flex-direction: column-reverse;
       .text {
         width: 100%;
       }
@@ -433,15 +434,21 @@
     padding: 10rem 5rem;
     position: relative;
     @extend .flexRow;
+
     .imageContainer {
+      z-index: 0;
       position: absolute;
       right: 0;
+      bottom: 100px;
       img {
         width: 400px;
       }
     }
     .text {
+      position: relative;
+      z-index: 2;
       width: 65%;
+      padding-bottom: 100px;
       .firstPara {
         margin-top: 3rem;
       }
@@ -451,6 +458,7 @@
     }
     @media screen and (max-width: 1200px) {
       .imageContainer {
+        bottom: 50px;
         img {
           width: 300px;
         }
@@ -458,8 +466,9 @@
     }
     @media screen and (max-width: 770px) {
       padding-top: 0;
-      margin-top: -10rem;
-      .imageContainer {
+      margin-top: 10rem;
+      h1 .imageContainer {
+        bottom: 30px;
         position: relative;
         align-self: flex-end;
         margin-right: -5rem;
@@ -472,8 +481,12 @@
       }
     }
     @media screen and (max-width: 700px) {
-      padding-bottom: 0;
-      flex-direction: column-reverse;
+      // padding-bottom: 0;
+      .imageContainer {
+        img {
+          width: 200px;
+        }
+      }
     }
   }
   .companies {
@@ -543,6 +556,12 @@
         width: 450px;
       }
     }
+    .textContainer {
+      width: 50%;
+      p {
+        margin-top: 30px;
+      }
+    }
     @media screen and (max-width: $screen-lg) {
       padding: 10rem 3rem 10rem 0rem;
       .imageContainer {
@@ -551,7 +570,7 @@
         }
       }
       .textContainer {
-        margin-left: -7rem;
+        margin-left: 0rem;
       }
     }
     @media screen and (max-width: 1000px) {
@@ -572,6 +591,7 @@
         align-self: flex-start;
       }
       .textContainer {
+        width: 100%;
         margin-left: 0;
         padding-left: 5rem;
       }
@@ -647,7 +667,7 @@
         }
         &:hover {
           border-radius: 3rem;
-          box-shadow: 0px 0px 32px white;
+          box-shadow: 0px 0px 10px white;
           img {
             transform: rotate(360deg);
           }
@@ -679,10 +699,16 @@
         }
       }
     }
+    @media screen and (max-width: 400px) {
+      .imagesContainer {
+        justify-content: space-evenly;
+      }
+    }
   }
   .how {
     padding: 5rem 0rem;
     padding-top: 8rem;
+    padding-bottom: 0;
     background-image: url("../../assets/images/noise.png");
     background-color: #ac86fe;
     background-size: contain;
@@ -810,6 +836,7 @@
     }
   }
   .gridContainer3 {
+    padding-top: 100px;
     background-size: cover;
     .images {
       .first,
@@ -1022,6 +1049,7 @@
         font-size: 2rem;
       }
     }
+
     .left {
       .chat {
         cursor: pointer;
@@ -1043,9 +1071,13 @@
       .join {
         margin-top: 5rem;
       }
+
       .buttons {
         margin-top: 4rem;
       }
+    }
+    a {
+      margin: 1rem !important;
     }
     .bottomLargeHeading {
       margin-bottom: -3.6rem;
@@ -1062,13 +1094,14 @@
       width: 100%;
       justify-content: space-between;
       button {
+        width: fit-content;
         cursor: pointer;
         color: white;
         border-radius: 1.5rem;
         background: transparent;
         padding: 1rem 2rem;
         border: 2px solid white;
-        margin: 1rem;
+        // margin: 1rem;
         &:hover {
           background: linear-gradient(110deg, #4b8aff, #ea4c89);
         }
