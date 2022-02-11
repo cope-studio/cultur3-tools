@@ -1,9 +1,9 @@
 import styles from "./App.module.scss";
 import { useState, useEffect } from "react";
 import { Home } from "./pages";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalContextProvider from "./utils/context/GlobalContext.jsx";
 import { Cursor } from "./components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [cursorClass, setCursorClass] = useState("");

@@ -412,6 +412,7 @@
       position: absolute;
       z-index: 0;
       right: 0;
+      text-align: center;
       img {
         width: 400px;
       }
@@ -673,7 +674,7 @@
         margin: 1.5rem 3rem;
         padding: 2rem;
         transition: all 1s ease-in-out;
-        // box-shadow: 0px 0px 32px black;
+        text-align: center; // box-shadow: 0px 0px 32px black;
         @extend .flexCol;
         img {
           width: 180px;

@@ -453,7 +453,7 @@ const Home = () => {
             </div>
             <div className={styles.imageContainer}>
               <img src={redOctagonalBadge} alt="Red Octagonal Badge" />
-              <p>
+              <p style={{ textAlign: "center" }}>
                 Token
                 <br /> Drops
               </p>
@@ -602,8 +602,8 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.right}>
-            <h1>Contact</h1>
-            <p>hello@culture.tools</p>
+            {/* <h1>Contact</h1>
+            <p>hello@culture.tools</p> */}
             <h1 className={styles.join}>Join our circle</h1>
           </div>
         </div>
