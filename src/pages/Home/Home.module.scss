@@ -757,16 +757,21 @@
       }
     }
     @media screen and (max-width: 800px) {
+      li {
+        font-size: 2.5rem !important;
+      }
+    }
+    @media screen and (max-width: 600px) {
       text-align: center;
 
-      background-image: linear-gradient(
-        20deg,
-        #252525,
-        #436ae8,
-        #f78799,
-        #9d78c4,
-        #252525
-      );
+      // background-image: linear-gradient(
+      //   20deg,
+      //   #252525,
+      //   #436ae8,
+      //   #f78799,
+      //   #9d78c4,
+      //   #252525
+      // );
       .cards {
         flex-direction: column;
         .card {
@@ -774,12 +779,12 @@
           cursor: initial;
           min-height: fit-content;
           align-items: center;
-          border: none;
+          // border: none;
           .imageForSmallScreen {
-            display: flex;
+            // display: flex;
           }
           .imageContainer {
-            display: none;
+            // display: none;
           }
           ul {
             margin: 0;
@@ -792,13 +797,13 @@
             }
           }
           &:hover {
-            background-color: initial;
-            ul {
-              li {
-                color: white;
-                opacity: 1;
-              }
-            }
+            // background-color: initial;
+            // ul {
+            //   li {
+            //     color: white;
+            //     opacity: 1;
+            //   }
+            // }
           }
         }
       }
