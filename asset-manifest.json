@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/cultur3-tools/static/css/main.c4adcdc2.css",
-    "main.js": "/cultur3-tools/static/js/main.5bfdd449.js",
+    "main.css": "/cultur3-tools/static/css/main.a78378c3.css",
+    "main.js": "/cultur3-tools/static/js/main.a2a14197.js",
     "static/media/noise.png": "/cultur3-tools/static/media/noise.df1fba93db18d6cc0e24.png",
     "static/media/ticket.png": "/cultur3-tools/static/media/ticket.440db39e93105f585707.png",
     "static/media/lightOrangeSquare.png": "/cultur3-tools/static/media/lightOrangeSquare.b86a046faad4827bea95.png",
@@ -40,11 +40,11 @@
     "static/media/arrowRight.svg": "/cultur3-tools/static/media/arrowRight.e7a17182021a873b7b701eb7d50921d2.svg",
     "static/media/forwardArrow.svg": "/cultur3-tools/static/media/forwardArrow.c5e638051027b683627c8796b26be469.svg",
     "static/media/remove.svg": "/cultur3-tools/static/media/remove.c1e3dff50b3d9212e03aed88b29c4dc1.svg",
-    "main.c4adcdc2.css.map": "/cultur3-tools/static/css/main.c4adcdc2.css.map",
-    "main.5bfdd449.js.map": "/cultur3-tools/static/js/main.5bfdd449.js.map"
+    "main.a78378c3.css.map": "/cultur3-tools/static/css/main.a78378c3.css.map",
+    "main.a2a14197.js.map": "/cultur3-tools/static/js/main.a2a14197.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4adcdc2.css",
-    "static/js/main.5bfdd449.js"
+    "static/css/main.a78378c3.css",
+    "static/js/main.a2a14197.js"
   ]
 }
