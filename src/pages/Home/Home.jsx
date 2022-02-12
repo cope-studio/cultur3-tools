@@ -267,7 +267,7 @@ const Home = () => {
                   value={message}
                   required
                   onChange={(e) => setMessage(e.target.value)}
-                  cols="30"
+                  cols="20"
                   rows="10"
                   placeholder="Enter Your Message"
                 ></textarea>
@@ -290,7 +290,11 @@ const Home = () => {
                 <h2>Tools</h2>
               </div>
             </div>
-            <a href="https://t.me/+VECH0ef_S0NhOGY8">
+            <a
+              href="https://t.me/+VECH0ef_S0NhOGY8"
+              target="_blank"
+              rel="noreferrer"
+            >
               {innerWidth > 800 ? (
                 <button className={styles.coloredButton}>
                   <img src={telegram} alt="Telegram" />
@@ -366,7 +370,7 @@ const Home = () => {
             </h1>
             <p className={styles.firstPara}>
               The best web3 companies will win on culture and community.
-            </p>{" "}
+            </p>
             <p>
               Cultur3 helps build both with precise data tools and thesis
               building teams.
@@ -738,13 +742,25 @@ const Home = () => {
         <div className={styles.copyrightButtons}>
           <p className={styles.copyright}>© Cultur3 Tools 2021</p>
           <div className={styles.buttons}>
-            <a href="https://www.instagram.com/cultur3.tools/">
+            <a
+              href="https://www.instagram.com/cultur3.tools/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <button>Instagram</button>
             </a>
-            <a href="https://twitter.com/0xcultur3">
+            <a
+              href="https://twitter.com/0xcultur3"
+              target="_blank"
+              rel="noreferrer"
+            >
               <button>Twitter</button>
             </a>
-            <a href="https://t.me/+VECH0ef_S0NhOGY8">
+            <a
+              href="https://t.me/+VECH0ef_S0NhOGY8"
+              target="_blank"
+              rel="noreferrer"
+            >
               <button>Telegram</button>
             </a>
           </div>
@@ -755,18 +771,29 @@ const Home = () => {
           <h1>Cultur3 Tools</h1>
           <p>Follow us on Socials</p>
           <div className={styles.icons}>
-            <a href="https://twitter.com/0xcultur3">
+            <a
+              href="https://twitter.com/0xcultur3"
+              target="_blank"
+              rel="noreferrer"
+            >
               <div className={styles.icon}>
                 <img src={twitter} alt="Twitter" />
               </div>
             </a>
-            <a href="https://www.instagram.com/cultur3.tools/">
-              {" "}
+            <a
+              href="https://www.instagram.com/cultur3.tools/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <div className={styles.icon}>
                 <img src={instagram} alt="Instagram" />
-              </div>{" "}
+              </div>
             </a>
-            <a href="https://t.me/+VECH0ef_S0NhOGY8">
+            <a
+              href="https://t.me/+VECH0ef_S0NhOGY8"
+              target="_blank"
+              rel="noreferrer"
+            >
               <div className={styles.icon}>
                 <img src={telegram} alt="Telegram" />
               </div>

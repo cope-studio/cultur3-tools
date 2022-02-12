@@ -1,6 +1,5 @@
 {
-  "name": "culture-tools-copy",
-  "homepage": "http://cope-studio.github.io/cultur3-tools/",
+  "name": "culture-tools",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
