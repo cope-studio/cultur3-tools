@@ -9,7 +9,7 @@ import {
 } from "react";
 import { CompanyCard } from "../../components";
 import { GlobalContext } from "../../utils/context/GlobalContext.jsx";
-import { motion } from "framer-motion";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 import clsx from "clsx";
 import ScrollTrigger from "react-scroll-trigger";
 import TypeWriter from "typewriter-effect";
@@ -17,6 +17,36 @@ import TypeWriter from "typewriter-effect";
 import "./Home.css";
 
 const Home = () => {
+  const { scrollYProgress } = useViewportScroll();
+  const scaleIconicLaunch = useTransform(
+    scrollYProgress,
+    [0, 0.09, 0.12, 0.16],
+    [0.6, 1, 1, 0.8]
+  );
+  const opacityIconicLaunch = useTransform(
+    scrollYProgress,
+    [0, 0.09, 0.12, 0.16],
+    [0, 1, 1, 0.5]
+  );
+
+  const scaleHero = useTransform(scrollYProgress, [0, 0.07, 0.09], [1, 0.7, 0]);
+  const opacityHero = useTransform(
+    scrollYProgress,
+    [0, 0.07, 0.09],
+    [1, 0.7, 0]
+  );
+
+  const scaleHypeBombs = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.2, 0.22],
+    [0.6, 1, 1, 0.8]
+  );
+  const opacityHypeBombs = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.2, 0.22],
+    [0, 1, 1, 0.5]
+  );
+
   const { innerWidth, cursorPosition } = useContext(GlobalContext);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const {
@@ -152,8 +182,7 @@ const Home = () => {
       opacity: 1,
       scale: workWithInView ? 1 : 0,
       transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
+        staggerChildren: 0.7,
       },
     },
   };
@@ -166,7 +195,7 @@ const Home = () => {
     },
   };
   return (
-    <div className={styles.container}>
+    <motion.div className={styles.container}>
       <section
         style={isFormSubmitted ? { display: "flex" } : { display: "none" }}
         className={styles.confirmation}
@@ -181,7 +210,16 @@ const Home = () => {
             onClick={() => setIsModalRequested(false)}
             className={styles.modalContainer}
           >
-            <form
+            <motion.form
+              initial={{ opacity: 0, scale: 0 }}
+              animate={
+                isModalRequested
+                  ? {
+                      opacity: 1,
+                      scale: 1,
+                    }
+                  : { opacity: 0, scale: 0 }
+              }
               onSubmit={handleContactUsSubmit}
               onClick={(e) => {
                 e.stopPropagation();
@@ -237,10 +275,13 @@ const Home = () => {
               <button type="submit" className={styles.submit}>
                 Submit
               </button>
-            </form>
+            </motion.form>
           </div>
         )}
-        <div className={styles.content}>
+        <motion.div
+          style={{ scale: scaleHero, opacity: opacityHero }}
+          className={styles.content}
+        >
           <header>
             <div className={styles.imageContainer}>
               <img src={logo} alt="Logo" />
@@ -261,13 +302,17 @@ const Home = () => {
               )}
             </a>
           </header>
-          <div className={styles.headingContainer}>
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className={styles.headingContainer}
+          >
             <h1 className={styles.heroHeading}>In Web3,</h1>
             <h1 className={styles.heroHeading}>
               <span className={styles.gradientText}>Patience</span> isn’t a
               Virtue
             </h1>
-          </div>
+          </motion.div>
           <p>Let’s launch faster & bigger?</p>
 
           <div className={styles.bottomImagesContainer}>
@@ -301,27 +346,22 @@ const Home = () => {
           <div ref={colorfulFlowerHero} className={styles.colorfulFlower}>
             <img src={colorfulFlower} alt="Colorful Flower" />
           </div>
-        </div>
+        </motion.div>
 
         <div className={styles.centerGradient}></div>
       </section>
       <section className={styles.gridContainer1}>
         <motion.section
-          transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
-          initial={{ x: -1000 }}
-          animate={{ x: iconLaunchInView ? 0 : -1000 }}
+          // transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
+          // initial={{ x: -1000 }}
+          // animate={{ x: iconLaunchInView ? 0 : -1000 }}
+          style={{ scale: scaleIconicLaunch, opacity: opacityIconicLaunch }}
           className={styles.iconicLaunch}
         >
           <div className={styles.text}>
             <h1>
               Every Great Story Begins with an
-              <ScrollTrigger
-                onEnter={() => {
-                  setIconLaunchInView(true);
-                }}
-              >
-                <span className={styles.coloredText}> Iconic</span>
-              </ScrollTrigger>{" "}
+              <span className={styles.coloredText}> Iconic </span>
               Launch
             </h1>
             <p className={styles.firstPara}>
@@ -338,20 +378,12 @@ const Home = () => {
         </motion.section>
 
         <motion.section
-          transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
-          initial={{ x: 1000 }}
-          animate={{ x: hypeBombInView ? 0 : 1000 }}
+          style={{ opacity: opacityHypeBombs, scale: scaleHypeBombs }}
           className={styles.hypeBombs}
         >
           <div className={styles.text}>
             <h1>
-              <ScrollTrigger
-                onEnter={() => {
-                  setHypeBombInView(true);
-                }}
-              >
-                <span className={styles.coloredText}> Hype</span>
-              </ScrollTrigger>{" "}
+              <span className={styles.coloredText}> Hype</span>
               Bombs
             </h1>
             <p className={styles.firstPara}>
@@ -372,28 +404,22 @@ const Home = () => {
           Who we <span className={styles.gradientText}> work </span>
           with
         </h1>
-        <motion.div
+        <div
           variants={companyContainer}
           initial="hidden"
           animate="visible"
           className={clsx(styles.companiesList, "container")}
         >
           {companyList.map((item) => (
-            <ScrollTrigger
-              onEnter={() => {
-                setWorkWithInView(true);
-              }}
-            >
-              <CompanyCard
-                variants={companyItem}
-                image={item.image}
-                key={item.id}
-                id={item.id}
-                className="item"
-              />
-            </ScrollTrigger>
+            <CompanyCard
+              variants={companyItem}
+              image={item.image}
+              key={item.id}
+              id={item.id}
+              className="item"
+            />
           ))}
-        </motion.div>
+        </div>
         <div className={styles.gradientLine2}></div>
         <div className={styles.imageContainer}>
           <img src={blueFlower} alt="Blue Flower" />
@@ -402,17 +428,13 @@ const Home = () => {
       <section className={styles.gridContainer2}>
         <section className={styles.cultureCult}>
           <motion.div
-            animate={{ x: cultureCultInView ? 0 : 1900 }}
-            initial={{ x: 1900 }}
-            transition={{ duration: "0.4", ease: [0.6, 0.01, -0.05, 0.9] }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
             className={styles.imageContainer}
           >
             <img src={ticket} alt="Ticket" />
           </motion.div>
           <div className={styles.textContainer}>
-            <ScrollTrigger
-              onEnter={() => setCultureCultInView(true)}
-            ></ScrollTrigger>{" "}
             <h1>
               Culture
               <br /> Cult
@@ -467,9 +489,27 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.starImages}>
-            <img className={styles.yellow} src={yellowStar} alt="Yellow Star" />
-            <img className={styles.purple} src={purpleStar} alt="Purple Star" />
-            <img className={styles.red} src={redStar} alt="Red Star" />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.yellow}
+              src={yellowStar}
+              alt="Yellow Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.purple}
+              src={purpleStar}
+              alt="Purple Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.red}
+              src={redStar}
+              alt="Red Star"
+            />
           </div>
         </section>
         <div className={styles.gradientLine1}></div>
@@ -525,36 +565,124 @@ const Home = () => {
       <section className={styles.gridContainer3}>
         <section className={styles.images}>
           <div className={styles.first}>
-            <img className={styles.star} src={purpleStar} alt="Purple Star" />
-            <img className={styles.star} src={yellowStar} alt="Yellow Star" />
-            <img className={styles.star} src={purpleStar} alt="Purple Star" />
-            <img className={styles.star} src={yellowStar} alt="Yellow Star" />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={purpleStar}
+              alt="Purple Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={yellowStar}
+              alt="Yellow Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={purpleStar}
+              alt="Purple Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={yellowStar}
+              alt="Yellow Star"
+            />
           </div>
           <div className={styles.second}>
-            <img className={styles.flower} src={blueFlower} alt="Blue Flower" />
-            <img className={styles.star} src={redStar} alt="Red Star" />
-            <img className={styles.ring} src={blueRing} alt="Blue Ring" />
-            <img className={styles.star} src={whiteStar} alt="White Star" />
-            <img className={styles.flower} src={redFlower} alt="Red Flower" />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.flower}
+              src={blueFlower}
+              alt="Blue Flower"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={redStar}
+              alt="Red Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.ring}
+              src={blueRing}
+              alt="Blue Ring"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={whiteStar}
+              alt="White Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.flower}
+              src={redFlower}
+              alt="Red Flower"
+            />
           </div>
           <div className={styles.third}>
-            <img className={styles.star} src={whiteStar} alt="White Star" />
-            <img
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={whiteStar}
+              alt="White Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
               className={styles.badge}
               src={whiteOctagonalBadge}
               alt="White Octagonal Badge"
             />
-            <img
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
               className={styles.flower}
               src={greenFlower}
               alt="Green Flower"
             />
-            <img className={styles.star} src={purpleStar} alt="Purple Star" />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={purpleStar}
+              alt="Purple Star"
+            />
           </div>
           <div className={styles.fourth}>
-            <img className={styles.star} src={yellowStar} alt="Yellow Star" />
-            <img className={styles.flower} src={redFlower} alt="Red Flower" />
-            <img className={styles.star} src={redStar} alt="Red Star" />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={yellowStar}
+              alt="Yellow Star"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.flower}
+              src={redFlower}
+              alt="Red Flower"
+            />
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.8 }}
+              className={styles.star}
+              src={redStar}
+              alt="Red Star"
+            />
           </div>
         </section>
         <section className={styles.whoToTag}>
@@ -647,8 +775,12 @@ const Home = () => {
           <span>© Cultur3 Tools 2021</span>
         </div>
       </footer>
-    </div>
+    </motion.div>
   );
+};
+
+const iconicLaunch = () => {
+  return;
 };
 
 export default Home;
