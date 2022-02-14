@@ -19,91 +19,91 @@ import "./Home.css";
 const Home = () => {
   const { scrollYProgress } = useViewportScroll();
 
-  const scaleHero = useTransform(
-    scrollYProgress,
-    [0, 0.05, 0.1, 0.15],
-    [1, 0.9, 0.8, 0.8]
-  );
-  const opacityHero = useTransform(
-    scrollYProgress,
-    [0, 0.05, 0.1, 0.15],
-    [1, 0.9, 0.8, 0.5]
-  );
+  // const scaleHero = useTransform(
+  //   scrollYProgress,
+  //   [0, 0.05, 0.1, 0.15],
+  //   [1, 0.9, 0.8, 1]
+  // );
+  // const opacityHero = useTransform(
+  //   scrollYProgress,
+  //   [0, 0.05, 0.1, 0.15],
+  //   [1, 0.9, 0.8, 1]
+  // );
 
   const scaleIconicLaunch = useTransform(
     scrollYProgress,
     [0.05, 0.09, 0.13, 0.17],
-    [0.8, 1, 1, 0.8]
+    [0.8, 1, 1, 1]
   );
   const opacityIconicLaunch = useTransform(
     scrollYProgress,
     [0.05, 0.09, 0.13, 0.17],
-    [0.5, 1, 1, 0.5]
+    [0.5, 1, 1, 1]
   );
   const scaleHypeBombs = useTransform(
     scrollYProgress,
     [0.13, 0.17, 0.21, 0.25],
-    [0.8, 1, 1, 0.8]
+    [0.9, 1, 1, 1]
   );
   const opacityHypeBombs = useTransform(
     scrollYProgress,
     [0.13, 0.17, 0.21, 0.25],
-    [0.5, 1, 1, 0.5]
+    [0.5, 1, 1, 1]
   );
 
   const scaleWorkWith = useTransform(
     scrollYProgress,
     [0.21, 0.25, 0.29, 0.33],
-    [0.8, 1, 1, 0.8]
+    [0.9, 1, 1, 1]
   );
   const opacityWorkWith = useTransform(
     scrollYProgress,
     [0.21, 0.25, 0.29, 0.33],
-    [0.5, 1, 1, 0.5]
+    [0.5, 1, 1, 1]
   );
 
   const scaleCultureCult = useTransform(
     scrollYProgress,
     [0.37, 0.41, 0.45, 0.49],
-    [0.8, 1, 1, 0.8]
+    [0.9, 1, 1, 1]
   );
   const opacityCultureCult = useTransform(
     scrollYProgress,
     [0.37, 0.41, 0.45, 0.49],
-    [0.5, 1, 1, 0.5]
+    [0.5, 1, 1, 1]
   );
 
   const scaleLightUp = useTransform(
     scrollYProgress,
     [0.49, 0.52, 0.57, 0.61],
-    [0.8, 1, 1, 0.8]
+    [0.9, 1, 1, 1]
   );
   const opacityLightUp = useTransform(
     scrollYProgress,
     [0.49, 0.52, 0.57, 0.61],
-    [0.5, 1, 1, 0.5]
+    [0.5, 1, 1, 1]
   );
 
   const scaleHow = useTransform(
     scrollYProgress,
     [0.61, 0.65, 0.69, 0.73],
-    [0.8, 1, 1, 0.8]
+    [0.9, 1, 1, 1]
   );
   const opacityHow = useTransform(
     scrollYProgress,
     [0.61, 0.65, 0.69, 0.73],
-    [0.5, 1, 1, 0.5]
+    [0.5, 1, 1, 1]
   );
 
   const scaleWhoToTag = useTransform(
     scrollYProgress,
     [0.81, 0.85, 0.89, 0.93],
-    [0.8, 1, 1, 0.8]
+    [0.9, 1, 1, 1]
   );
   const opacityWhoToTag = useTransform(
     scrollYProgress,
     [0.81, 0.85, 0.89, 0.93],
-    [0.5, 1, 1, 0.5]
+    [0.5, 1, 1, 1]
   );
 
   const scaleFooter = useTransform(
@@ -348,9 +348,9 @@ const Home = () => {
           </div>
         )}
         <motion.div
-          style={
-            innerWidth > 800 ? { scale: scaleHero, opacity: opacityHero } : {}
-          }
+          // style={
+          //   innerWidth > 800 ? { scale: scaleHero, opacity: opacityHero } : {}
+          // }
           className={styles.content}
         >
           <header>
@@ -516,14 +516,7 @@ const Home = () => {
         </div>
       </section>
       <section className={styles.gridContainer2}>
-        <motion.section
-          style={
-            innerWidth > 800
-              ? { scale: scaleCultureCult, opacity: opacityCultureCult }
-              : {}
-          }
-          className={styles.cultureCult}
-        >
+        <section className={styles.cultureCult}>
           <motion.div
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
@@ -531,7 +524,14 @@ const Home = () => {
           >
             <img src={ticket} alt="Ticket" />
           </motion.div>
-          <div className={styles.textContainer}>
+          <motion.div
+            style={
+              innerWidth > 800
+                ? { scale: scaleCultureCult, opacity: opacityCultureCult }
+                : {}
+            }
+            className={styles.textContainer}
+          >
             <h1>
               Culture
               <br /> Cult
@@ -542,8 +542,8 @@ const Home = () => {
               to identify radical thinkers and help them build breakthrough
               companies.
             </p>
-          </div>
-        </motion.section>
+          </motion.div>
+        </section>
         <motion.section
           style={
             innerWidth > 800
