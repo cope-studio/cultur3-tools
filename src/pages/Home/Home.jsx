@@ -347,7 +347,7 @@ const Home = () => {
             </motion.form>
           </div>
         )}
-        <motion.div
+        <div
           // style={
           //   innerWidth > 800 ? { scale: scaleHero, opacity: opacityHero } : {}
           // }
@@ -377,9 +377,9 @@ const Home = () => {
               )}
             </a>
           </header>
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+          <div
+            // initial={{ scale: 0, opacity: 0 }}
+            // animate={{ scale: 1, opacity: 1 }}
             className={styles.headingContainer}
           >
             <h1 className={styles.heroHeading}>In Web3,</h1>
@@ -387,7 +387,7 @@ const Home = () => {
               <span className={styles.gradientText}>Patience</span> isn’t a
               Virtue
             </h1>
-          </motion.div>
+          </div>
           <p>Let’s launch faster & bigger?</p>
 
           <div className={styles.bottomImagesContainer}>
@@ -410,7 +410,7 @@ const Home = () => {
           <div ref={colorfulFlowerHero} className={styles.colorfulFlower}>
             <img src={colorfulFlower} alt="Colorful Flower" />
           </div>
-        </motion.div>
+        </div>
 
         <div className={styles.centerGradient}></div>
       </section>
