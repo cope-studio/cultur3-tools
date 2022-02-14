@@ -264,7 +264,7 @@ const Home = () => {
     },
   };
   return (
-    <motion.div className={styles.container}>
+    <div className={styles.container}>
       <section
         style={isFormSubmitted ? { display: "flex" } : { display: "none" }}
         className={styles.confirmation}
@@ -391,15 +391,9 @@ const Home = () => {
           <p>Let’s launch faster & bigger?</p>
 
           <div className={styles.bottomImagesContainer}>
-            <motion.div
-              transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
-              initial={{ y: -300, x: 1000 }}
-              animate={{ y: 0, x: 0 }}
-              ref={greenFlowerHero}
-              className={styles.greenFlower}
-            >
+            <div ref={greenFlowerHero} className={styles.greenFlower}>
               <img src={greenFlower} alt="Green Flower" />
-            </motion.div>
+            </div>
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -409,14 +403,9 @@ const Home = () => {
             >
               <span>Say Hello &#128075;</span>
             </button>
-            <motion.div
-              transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
-              initial={{ y: 300, x: -1000 }}
-              animate={{ y: 0, x: 0 }}
-              className={styles.galaxy}
-            >
+            <div className={styles.galaxy}>
               <img src={galaxy} alt="Galaxy" />
-            </motion.div>
+            </div>
           </div>
           <div ref={colorfulFlowerHero} className={styles.colorfulFlower}>
             <img src={colorfulFlower} alt="Colorful Flower" />
@@ -593,27 +582,9 @@ const Home = () => {
             </div>
           </div>
           <div className={styles.starImages}>
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.yellow}
-              src={yellowStar}
-              alt="Yellow Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.purple}
-              src={purpleStar}
-              alt="Purple Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.red}
-              src={redStar}
-              alt="Red Star"
-            />
+            <img className={styles.yellow} src={yellowStar} alt="Yellow Star" />
+            <img className={styles.purple} src={purpleStar} alt="Purple Star" />
+            <img className={styles.red} src={redStar} alt="Red Star" />
           </div>
         </motion.section>
         <div className={styles.gradientLine1}></div>
@@ -676,124 +647,36 @@ const Home = () => {
       <section className={styles.gridContainer3}>
         <section className={styles.images}>
           <div className={styles.first}>
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={purpleStar}
-              alt="Purple Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={yellowStar}
-              alt="Yellow Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={purpleStar}
-              alt="Purple Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={yellowStar}
-              alt="Yellow Star"
-            />
+            <img className={styles.star} src={purpleStar} alt="Purple Star" />
+            <img className={styles.star} src={yellowStar} alt="Yellow Star" />
+            <img className={styles.star} src={purpleStar} alt="Purple Star" />
+            <img className={styles.star} src={yellowStar} alt="Yellow Star" />
           </div>
           <div className={styles.second}>
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.flower}
-              src={blueFlower}
-              alt="Blue Flower"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={redStar}
-              alt="Red Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.ring}
-              src={blueRing}
-              alt="Blue Ring"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={whiteStar}
-              alt="White Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.flower}
-              src={redFlower}
-              alt="Red Flower"
-            />
+            <img className={styles.flower} src={blueFlower} alt="Blue Flower" />
+            <img className={styles.star} src={redStar} alt="Red Star" />
+            <img className={styles.ring} src={blueRing} alt="Blue Ring" />
+            <img className={styles.star} src={whiteStar} alt="White Star" />
+            <img className={styles.flower} src={redFlower} alt="Red Flower" />
           </div>
           <div className={styles.third}>
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={whiteStar}
-              alt="White Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
+            <img className={styles.star} src={whiteStar} alt="White Star" />
+            <img
               className={styles.badge}
               src={whiteOctagonalBadge}
               alt="White Octagonal Badge"
             />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
+            <img
               className={styles.flower}
               src={greenFlower}
               alt="Green Flower"
             />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={purpleStar}
-              alt="Purple Star"
-            />
+            <img className={styles.star} src={purpleStar} alt="Purple Star" />
           </div>
           <div className={styles.fourth}>
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={yellowStar}
-              alt="Yellow Star"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.flower}
-              src={redFlower}
-              alt="Red Flower"
-            />
-            <motion.img
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.8 }}
-              className={styles.star}
-              src={redStar}
-              alt="Red Star"
-            />
+            <img className={styles.star} src={yellowStar} alt="Yellow Star" />
+            <img className={styles.flower} src={redFlower} alt="Red Flower" />
+            <img className={styles.star} src={redStar} alt="Red Star" />
           </div>
         </section>
         <motion.section
@@ -925,7 +808,7 @@ const Home = () => {
           </div>
         </motion.div>
       </footer>
-    </motion.div>
+    </div>
   );
 };
 
