@@ -518,6 +518,7 @@
     background-image: url("../../assets/images/noise.png");
     background-color: #252525;
     background-size: contain;
+    text-align: center;
     .companiesList {
       display: grid;
       margin-top: 4rem;
@@ -1055,6 +1056,9 @@
     }
   }
   footer {
+    background-color: #000000;
+  }
+  .footerSubContainer {
     padding: 5rem;
     padding-bottom: 0rem;
     // background-image: linear-gradient(to bottom, #000104, #01318a);

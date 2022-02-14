@@ -18,35 +18,104 @@ import "./Home.css";
 
 const Home = () => {
   const { scrollYProgress } = useViewportScroll();
+
+  const scaleHero = useTransform(
+    scrollYProgress,
+    [0, 0.05, 0.1, 0.15],
+    [1, 0.9, 0.8, 0.8]
+  );
+  const opacityHero = useTransform(
+    scrollYProgress,
+    [0, 0.05, 0.1, 0.15],
+    [1, 0.9, 0.8, 0.5]
+  );
+
   const scaleIconicLaunch = useTransform(
     scrollYProgress,
-    [0, 0.09, 0.12, 0.16],
-    [0.6, 1, 1, 0.8]
+    [0.05, 0.09, 0.13, 0.17],
+    [0.8, 1, 1, 0.8]
   );
   const opacityIconicLaunch = useTransform(
     scrollYProgress,
-    [0, 0.09, 0.12, 0.16],
-    [0, 1, 1, 0.5]
+    [0.05, 0.09, 0.13, 0.17],
+    [0.5, 1, 1, 0.5]
   );
-
-  const scaleHero = useTransform(scrollYProgress, [0, 0.07, 0.09], [1, 0.7, 0]);
-  const opacityHero = useTransform(
-    scrollYProgress,
-    [0, 0.07, 0.09],
-    [1, 0.7, 0]
-  );
-
   const scaleHypeBombs = useTransform(
     scrollYProgress,
-    [0, 0.18, 0.2, 0.22],
-    [0.6, 1, 1, 0.8]
+    [0.13, 0.17, 0.21, 0.25],
+    [0.8, 1, 1, 0.8]
   );
   const opacityHypeBombs = useTransform(
     scrollYProgress,
-    [0, 0.18, 0.2, 0.22],
-    [0, 1, 1, 0.5]
+    [0.13, 0.17, 0.21, 0.25],
+    [0.5, 1, 1, 0.5]
   );
 
+  const scaleWorkWith = useTransform(
+    scrollYProgress,
+    [0.21, 0.25, 0.29, 0.33],
+    [0.8, 1, 1, 0.8]
+  );
+  const opacityWorkWith = useTransform(
+    scrollYProgress,
+    [0.21, 0.25, 0.29, 0.33],
+    [0.5, 1, 1, 0.5]
+  );
+
+  const scaleCultureCult = useTransform(
+    scrollYProgress,
+    [0.37, 0.41, 0.45, 0.49],
+    [0.8, 1, 1, 0.8]
+  );
+  const opacityCultureCult = useTransform(
+    scrollYProgress,
+    [0.37, 0.41, 0.45, 0.49],
+    [0.5, 1, 1, 0.5]
+  );
+
+  const scaleLightUp = useTransform(
+    scrollYProgress,
+    [0.49, 0.52, 0.57, 0.61],
+    [0.8, 1, 1, 0.8]
+  );
+  const opacityLightUp = useTransform(
+    scrollYProgress,
+    [0.49, 0.52, 0.57, 0.61],
+    [0.5, 1, 1, 0.5]
+  );
+
+  const scaleHow = useTransform(
+    scrollYProgress,
+    [0.61, 0.65, 0.69, 0.73],
+    [0.8, 1, 1, 0.8]
+  );
+  const opacityHow = useTransform(
+    scrollYProgress,
+    [0.61, 0.65, 0.69, 0.73],
+    [0.5, 1, 1, 0.5]
+  );
+
+  const scaleWhoToTag = useTransform(
+    scrollYProgress,
+    [0.81, 0.85, 0.89, 0.93],
+    [0.8, 1, 1, 0.8]
+  );
+  const opacityWhoToTag = useTransform(
+    scrollYProgress,
+    [0.81, 0.85, 0.89, 0.93],
+    [0.5, 1, 1, 0.5]
+  );
+
+  const scaleFooter = useTransform(
+    scrollYProgress,
+    [0.89, 0.93, 0.97, 1],
+    [0.7, 0.8, 1, 1]
+  );
+  const opacityFooter = useTransform(
+    scrollYProgress,
+    [0.89, 0.93, 0.97, 1],
+    [0.5, 0.7, 1, 1]
+  );
   const { innerWidth, cursorPosition } = useContext(GlobalContext);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const {
@@ -279,7 +348,9 @@ const Home = () => {
           </div>
         )}
         <motion.div
-          style={{ scale: scaleHero, opacity: opacityHero }}
+          style={
+            innerWidth > 800 ? { scale: scaleHero, opacity: opacityHero } : {}
+          }
           className={styles.content}
         >
           <header>
@@ -359,7 +430,11 @@ const Home = () => {
           // transition={{ duration: 0.5, ease: [0.6, 0.01, -0.05, 0.9] }}
           // initial={{ x: -1000 }}
           // animate={{ x: iconLaunchInView ? 0 : -1000 }}
-          style={{ scale: scaleIconicLaunch, opacity: opacityIconicLaunch }}
+          style={
+            innerWidth > 800
+              ? { scale: scaleIconicLaunch, opacity: opacityIconicLaunch }
+              : {}
+          }
           className={styles.iconicLaunch}
         >
           <div className={styles.text}>
@@ -382,7 +457,11 @@ const Home = () => {
         </motion.section>
 
         <motion.section
-          style={{ opacity: opacityHypeBombs, scale: scaleHypeBombs }}
+          style={
+            innerWidth > 800
+              ? { opacity: opacityHypeBombs, scale: scaleHypeBombs }
+              : {}
+          }
           className={styles.hypeBombs}
         >
           <div className={styles.text}>
@@ -402,35 +481,49 @@ const Home = () => {
         </motion.section>
       </section>
       <section className={styles.companies}>
-        <div className={styles.gradientLine1}></div>
-
-        <h1>
-          Who we <span className={styles.gradientText}> work </span>
-          with
-        </h1>
-        <div
-          variants={companyContainer}
-          initial="hidden"
-          animate="visible"
-          className={clsx(styles.companiesList, "container")}
+        <motion.div
+          style={
+            innerWidth > 800
+              ? { scale: scaleWorkWith, opacity: opacityWorkWith }
+              : {}
+          }
+          className={styles.companiesSubContainer}
         >
-          {companyList.map((item) => (
-            <CompanyCard
-              variants={companyItem}
-              image={item.image}
-              key={item.id}
-              id={item.id}
-              className="item"
-            />
-          ))}
-        </div>
+          <h1>
+            Who we <span className={styles.gradientText}> work </span>
+            with
+          </h1>
+          <div
+            variants={companyContainer}
+            initial="hidden"
+            animate="visible"
+            className={clsx(styles.companiesList, "container")}
+          >
+            {companyList.map((item) => (
+              <CompanyCard
+                variants={companyItem}
+                image={item.image}
+                key={item.id}
+                id={item.id}
+                className="item"
+              />
+            ))}
+          </div>
+        </motion.div>
         <div className={styles.gradientLine2}></div>
         <div className={styles.imageContainer}>
           <img src={blueFlower} alt="Blue Flower" />
         </div>
       </section>
       <section className={styles.gridContainer2}>
-        <section className={styles.cultureCult}>
+        <motion.section
+          style={
+            innerWidth > 800
+              ? { scale: scaleCultureCult, opacity: opacityCultureCult }
+              : {}
+          }
+          className={styles.cultureCult}
+        >
           <motion.div
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
@@ -450,8 +543,15 @@ const Home = () => {
               companies.
             </p>
           </div>
-        </section>
-        <section className={styles.lightUp}>
+        </motion.section>
+        <motion.section
+          style={
+            innerWidth > 800
+              ? { scale: scaleLightUp, opacity: opacityLightUp }
+              : {}
+          }
+          className={styles.lightUp}
+        >
           <h1>
             What we <span>light </span>up
           </h1>
@@ -515,56 +615,63 @@ const Home = () => {
               alt="Red Star"
             />
           </div>
-        </section>
+        </motion.section>
         <div className={styles.gradientLine1}></div>
       </section>
       <section className={styles.how}>
-        <h1>How do we do it?</h1>
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            <div className={styles.imageForSmallScreen}>
-              <img src={ideaBlue} alt="Idea Blue" />
-            </div>
+        <motion.div
+          style={
+            innerWidth > 800 ? { scale: scaleHow, opacity: opacityHow } : {}
+          }
+          className={styles.howSubContainer}
+        >
+          <h1>How do we do it?</h1>
+          <div className={styles.cards}>
+            <div className={styles.card}>
+              <div className={styles.imageForSmallScreen}>
+                <img src={ideaBlue} alt="Idea Blue" />
+              </div>
 
-            <p>The Idea</p>
-            <ul>
-              <li>Product Planning</li>
-              <li>Opportunity Assessment</li>
-              <li>Market Feasibility Report</li>
-            </ul>
-            <div className={styles.imageContainer}>
-              <img src={darkPurpleSphere} alt="Purple Sphere" />
+              <p>The Idea</p>
+              <ul>
+                <li>Product Planning</li>
+                <li>Opportunity Assessment</li>
+                <li>Market Feasibility Report</li>
+              </ul>
+              <div className={styles.imageContainer}>
+                <img src={darkPurpleSphere} alt="Purple Sphere" />
+              </div>
+            </div>
+            <div className={styles.card}>
+              <div className={styles.imageForSmallScreen}>
+                <img src={marketYellow} alt="Market Yellow" />
+              </div>
+              <p>The Market</p>
+              <ul>
+                <li>Market Planning</li>
+                <li>Content Production</li>
+                <li>Consumer Research</li>
+              </ul>
+              <div className={styles.imageContainer}>
+                <img src={redCard} alt="Red Card" />
+              </div>
+            </div>
+            <div className={styles.card}>
+              <div className={styles.imageForSmallScreen}>
+                <img src={growthRed} alt="Growth Red" />
+              </div>
+              <p>The Growth</p>
+              <ul>
+                <li>Communication Strategy</li>
+                <li>Media Engagement</li>
+                <li>Thought Leadership</li>
+              </ul>
+              <div className={styles.imageContainer}>
+                <img src={bamboo} alt="Bamboo" />
+              </div>
             </div>
           </div>
-          <div className={styles.card}>
-            <div className={styles.imageForSmallScreen}>
-              <img src={marketYellow} alt="Market Yellow" />
-            </div>
-            <p>The Market</p>
-            <ul>
-              <li>Market Planning</li>
-              <li>Content Production</li>
-              <li>Consumer Research</li>
-            </ul>
-            <div className={styles.imageContainer}>
-              <img src={redCard} alt="Red Card" />
-            </div>
-          </div>
-          <div className={styles.card}>
-            <div className={styles.imageForSmallScreen}>
-              <img src={growthRed} alt="Growth Red" />
-            </div>
-            <p>The Growth</p>
-            <ul>
-              <li>Communication Strategy</li>
-              <li>Media Engagement</li>
-              <li>Thought Leadership</li>
-            </ul>
-            <div className={styles.imageContainer}>
-              <img src={bamboo} alt="Bamboo" />
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </section>
       <section className={styles.gridContainer3}>
         <section className={styles.images}>
@@ -689,7 +796,14 @@ const Home = () => {
             />
           </div>
         </section>
-        <section className={styles.whoToTag}>
+        <motion.section
+          style={
+            innerWidth > 800
+              ? { scale: scaleWhoToTag, opacity: opacityWhoToTag }
+              : {}
+          }
+          className={styles.whoToTag}
+        >
           <h1>Who do we tag with?</h1>
           <div className={styles.paraAndImage}>
             <div className={styles.left}>
@@ -712,102 +826,107 @@ const Home = () => {
               <img src={lightOrangeSquare} alt="Light Orange Square" />
             </div>
           </div>
-        </section>
+        </motion.section>
       </section>
       <footer className={styles.footer}>
-        <div className={styles.image}>
-          <img src={blueCircularBadge} alt="Blue Circular Badge" />
-        </div>
-        <div className={styles.content}>
-          <div className={styles.left}>
-            <h1>Get in touch</h1>
-            <p>The best web3 companies will win on culture and community. </p>
-            <div
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsModalRequested(true);
-              }}
-              className={styles.chat}
-            >
-              <span>Let's Chat</span>
-              <img src={arrowRight} alt="Forward Arrow" />
+        <motion.div
+          style={
+            innerWidth > 800
+              ? { scale: scaleFooter, opacity: opacityFooter }
+              : {}
+          }
+          className={styles.footerSubContainer}
+        >
+          <div className={styles.image}>
+            <img src={blueCircularBadge} alt="Blue Circular Badge" />
+          </div>
+          <div className={styles.content}>
+            <div className={styles.left}>
+              <h1>Get in touch</h1>
+              <p>The best web3 companies will win on culture and community. </p>
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsModalRequested(true);
+                }}
+                className={styles.chat}
+              >
+                <span>Let's Chat</span>
+                <img src={arrowRight} alt="Forward Arrow" />
+              </div>
+            </div>
+            <div className={styles.right}>
+              {/* <h1>Contact</h1>
+            <p>hello@culture.tools</p> */}
+              <h1 className={styles.join}>Join our circle</h1>
             </div>
           </div>
-          <div className={styles.right}>
-            {/* <h1>Contact</h1>
-            <p>hello@culture.tools</p> */}
-            <h1 className={styles.join}>Join our circle</h1>
+          <div className={styles.copyrightButtons}>
+            <p className={styles.copyright}>© Cultur3 Tools 2021</p>
+            <div className={styles.buttons}>
+              <a
+                href="https://www.instagram.com/cultur3.tools/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <button>Instagram</button>
+              </a>
+              <a
+                href="https://twitter.com/0xcultur3"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <button>Twitter</button>
+              </a>
+              <a
+                href="https://t.me/+VECH0ef_S0NhOGY8"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <button>Telegram</button>
+              </a>
+            </div>
           </div>
-        </div>
-        <div className={styles.copyrightButtons}>
-          <p className={styles.copyright}>© Cultur3 Tools 2021</p>
-          <div className={styles.buttons}>
-            <a
-              href="https://www.instagram.com/cultur3.tools/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <button>Instagram</button>
-            </a>
-            <a
-              href="https://twitter.com/0xcultur3"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <button>Twitter</button>
-            </a>
-            <a
-              href="https://t.me/+VECH0ef_S0NhOGY8"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <button>Telegram</button>
-            </a>
-          </div>
-        </div>
 
-        <h1 className={styles.bottomLargeHeading}>Cultur3 Tools</h1>
-        <div className={styles.contentForSmallScreen}>
-          <h1>Cultur3 Tools</h1>
-          <p>Follow us on Socials</p>
-          <div className={styles.icons}>
-            <a
-              href="https://twitter.com/0xcultur3"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className={styles.icon}>
-                <img src={twitter} alt="Twitter" />
-              </div>
-            </a>
-            <a
-              href="https://www.instagram.com/cultur3.tools/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className={styles.icon}>
-                <img src={instagram} alt="Instagram" />
-              </div>
-            </a>
-            <a
-              href="https://t.me/+VECH0ef_S0NhOGY8"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className={styles.icon}>
-                <img src={telegram} alt="Telegram" />
-              </div>
-            </a>
+          <h1 className={styles.bottomLargeHeading}>Cultur3 Tools</h1>
+          <div className={styles.contentForSmallScreen}>
+            <h1>Cultur3 Tools</h1>
+            <p>Follow us on Socials</p>
+            <div className={styles.icons}>
+              <a
+                href="https://twitter.com/0xcultur3"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className={styles.icon}>
+                  <img src={twitter} alt="Twitter" />
+                </div>
+              </a>
+              <a
+                href="https://www.instagram.com/cultur3.tools/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className={styles.icon}>
+                  <img src={instagram} alt="Instagram" />
+                </div>
+              </a>
+              <a
+                href="https://t.me/+VECH0ef_S0NhOGY8"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className={styles.icon}>
+                  <img src={telegram} alt="Telegram" />
+                </div>
+              </a>
+            </div>
+            <span>© Cultur3 Tools 2021</span>
           </div>
-          <span>© Cultur3 Tools 2021</span>
-        </div>
+        </motion.div>
       </footer>
     </motion.div>
   );
-};
-
-const iconicLaunch = () => {
-  return;
 };
 
 export default Home;
